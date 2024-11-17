@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    app: ecommerce-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce-api
+  template:
+    metadata:
+      labels:
+        app: ecommerce-api
+    spec:
+      serviceAccountName: service-account-deployment1
+      containers:
+        - name: ecommerce-api
+          image: ahmedkhalil98/webapi:v1.0
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: DEVELOPMENT
+            - name: SQLSERVER_CONNECTIONSTRING
+              value: "Server=sqlserver;Database=ECommerceApi;User=sa;Password=@Abc123@"
+      imagePullSecrets:
+      - name: regcred
