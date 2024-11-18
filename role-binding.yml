@@ -1,0 +1,28 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rolebinding-deployment1
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: service-account-deployment1
+    namespace: default
+roleRef:
+  kind: Role
+  name: restricted-pod-access
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: rolebinding-deployment2
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: service-account-deployment2
+    namespace: default
+roleRef:
+  kind: Role
+  name: restricted-pod-access
+  apiGroup: rbac.authorization.k8s.io
+

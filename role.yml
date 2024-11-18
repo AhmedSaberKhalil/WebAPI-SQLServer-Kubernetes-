@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: restricted-pod-access
+  namespace: default
+rules:
+  - apiGroups: [""] # Core API group
+    resources: ["pods"] # Only apply to pods
+    verbs: ["get","list", "create", "update", "patch", "watch", "delete", "deletecollection"]
+
+
