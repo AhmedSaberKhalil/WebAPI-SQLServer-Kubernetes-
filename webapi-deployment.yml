@@ -24,6 +24,9 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: DEVELOPMENT
             - name: SQLSERVER_CONNECTIONSTRING
-              value: "Server=sqlserver;Database=ECommerceApi;User=sa;Password=@Abc123@"
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: ConnectionString
       imagePullSecrets:
       - name: regcred
